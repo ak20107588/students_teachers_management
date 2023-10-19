@@ -1,0 +1,138 @@
+{% include "navbar.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home </title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+<style>
+table, th, td {
+  border: 1px solid black;
+  margin:10px;
+}
+ td,th {
+  padding: 20px;
+}
+table.center {
+  margin-left: auto; 
+  margin-right: auto;
+}
+</style>
+</head>
+<body>
+
+<center class="h1" style="margin-top:10px;">Welcome</center>
+<table class="center">
+  <center>{% include 'messages.html' %}</center>
+  <tr>
+    <th>Teacher Name</th>
+    <th>Student Name</th>
+    <th>Find</th>
+  </tr>
+  <tr>
+    <td><form method="post" action="teacher_student_data">
+      {% csrf_token %}
+      <input type="hidden" name="teacher">
+      <select name="teacherid" class="custom-select" id="selected_filter">
+        <option value="" disabled selected>Select Teacher</option>
+        {% for i in Data %}
+        <option  value="{{i.id}}" >{{i.name}}</option>
+        {% endfor %}
+        
+    </select>
+</td></td>
+    <td>
+        <input type="hidden" name="student">
+        <select name="studentid" class="custom-select" id="optionsSelect2">
+        <option value="" disabled selected>Select Student </option>
+        {%for i in Data1%}
+        <option id="result" value="{{i.id}}">{{i.name}}</option>
+        {%endfor%}
+      
+    </select>
+
+</td></td>
+    <td><button class="btn btn-success" >Find </button></td>
+  </tr>
+  
+</table>
+
+
+{%if Data3 %}
+<center>
+  <div class="container">
+      <h1>Students List for Teacher <span class="text-primary">{{Teacher.name}}</span></h1>
+      <div class="table-container">
+          <table>
+              <thead>
+                  <tr>
+                      <th>Student Name</th>
+                      <th>Certificate</th>
+                      
+                  </tr>
+              </thead>
+              <tbody>
+                {% for i in Data3 %}
+                  <tr>
+                      <td>{{i.name}}</td>
+                      
+                      {% comment %} {% for c in certify %} {% endcomment %}
+                      {%if certify.StudentID == i.id %}
+                    
+                      <td><a class="btn btn-secondary" href="verify_certificate/{{i.id}}">View Certificate</a></td>
+                        {%else%}
+                        <td><a class="btn btn-info" href="generate_certificate/">Generate Certificate</a></td>
+                        {%endif%}
+                        
+                  </tr>
+                  {% comment %} {%endfor%} {% endcomment %}
+                  {%endfor%}
+                  
+              </tbody>
+          </table>
+      </div>
+  </div>
+{%endif%}
+</center>
+
+
+
+<center>
+{% if Data4 %}
+  <div class="container">
+      <h1>Teachers List for Student <span class="text-primary">{{Student.name}} </span></h1>
+      <div class="table-container">
+          <table>
+              <thead>
+                  <tr>
+                      <th>Teacher Name</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {% for i in Data4 %}
+                  <tr>
+                      <td>{{i.name}}</td>
+                  </tr>
+                  {%endfor%}
+                  
+              </tbody>
+          </table>
+      </div>
+  </div>
+</center>
+{%endif%}
+
+
+
+
+</form>
+
+ 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+</body>
+</html> 
+

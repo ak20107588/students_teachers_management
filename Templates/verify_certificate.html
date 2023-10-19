@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verified</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+			margin-top:5%;
+        }
+        .container {
+            background-color: #ffffff;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+        }
+        .certificate {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .verified-badge {
+            width: 100px;
+            height: 100px;
+            background-color: #4CAF50;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 2em;
+        }
+        .btn-home {
+            
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <center>{% include 'messages.html' %}</center>
+    <div class="container">
+        <h1>Certificate Verified</h1>
+        <div class="certificate">
+            <div class="verified-badge">
+                <span>&#10003;</span>
+            </div><br>
+            <p><strong>Certificate ID:</strong>{{certify.id}}</p>
+            <p><strong>Certificate Issue Date: </strong> {{certify.Issued_Date}}</p>
+            <p><strong> Issued to: </strong> {{certify.Student_Name}}</p>
+			<p><strong> Under The Guidance: </strong> {{certify.Teacher_Name}}</p>
+            <p><strong> Course: </strong> Python Full Stack Developement.</p>
+        </div>
+        <center> <a href="/" class="btn btn-primary btn-home ">Back to Home</a> </center>
+    </div>
+</body>
+</html>

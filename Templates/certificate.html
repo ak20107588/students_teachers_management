@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Certificate Template</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        /* Custom CSS for the certificate */
+        .certificate {
+            background-color: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top:10%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+
+        .certificate-header {
+            text-align: center;
+        }
+
+        .certificate-header h1 {
+            font-size: 36px;
+            color: #007BFF;
+        }
+
+        .certificate-content {
+            text-align: center;
+        }
+
+        .certificate-content p {
+            font-size: 18px;
+        }
+
+        .teacher-name {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="certificate">
+            <center>{% include "messages.html" %}</center>
+            <div class="certificate-header">
+                <h1>Certificate of Achievement</h1>
+            </div>
+            <div class="certificate-content">
+                <p>This is to certify that</p>
+                <p><strong>Mr. {{certi_data.Student_Name}}</strong></p>
+                <p>has successfully completed the course:</p>
+                <p><strong>Full Stack Python Developement</strong></p>
+                <p>under the guidance of</p>
+                <p class="teacher-name"><strong>Prof. {{certi_data.Teacher_Name}}</strong></p>
+                {% comment %} <p>on <strong>October 15, 2023</strong></p> {% endcomment %}
+                <p>Date: {{certi_data.Issued_Date}}</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

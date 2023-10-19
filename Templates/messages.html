@@ -1,0 +1,40 @@
+<DOCTYPE html>
+    <html>
+        <head>
+             
+        </head>
+
+        <body>
+
+         {% if messages %}
+
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags%} class="{{message.tags}}" {% endif %}>{{message}} </li>
+                {% endfor %}
+
+            </ul>
+            {% endif %}  
+
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Function to hide messages after 2 seconds
+        function hideMessages() {
+            $(".messages").fadeOut(4000); // 2000 milliseconds (2 seconds)
+        }
+
+        // Call the hideMessages function when the document is ready
+        hideMessages();
+    });
+</script>
+      
+
+
+     
+
+
+        </body>
+
+    </html>
