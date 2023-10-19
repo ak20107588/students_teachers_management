@@ -19,6 +19,7 @@ table.center {
   margin-left: auto; 
   margin-right: auto;
 }
+
 </style>
 </head>
 <body>
@@ -69,26 +70,27 @@ table.center {
               <thead>
                   <tr>
                       <th>Student Name</th>
-                      <th>Certificate</th>
-                      
+                      <th>Certificate</th> 
                   </tr>
               </thead>
               <tbody>
                 {% for i in Data3 %}
                   <tr>
                       <td>{{i.name}}</td>
+                      {% for c in certify %}
                       
-                      {% comment %} {% for c in certify %} {% endcomment %}
-                      {%if certify.StudentID == i.id %}
-                    
-                      <td><a class="btn btn-secondary" href="verify_certificate/{{i.id}}">View Certificate</a></td>
-                        {%else%}
-                        <td><a class="btn btn-info" href="generate_certificate/">Generate Certificate</a></td>
-                        {%endif%}
-                        
+                      {% if c.StudentID == i.id %}
+                      <td> <a class="btn btn-secondary" href="verify_certificate/{{i.id}}"> View Certificate </a> </td>
+                      
+                      {% if c.StudentID != i.id %} 
+                      <td> <a class="btn btn-info" href="generate_certificate/"> Generate Certificate </a> </td>                              
+                      {% endif %}{% endif %}
+                     
+                       
+                         {% endfor %}
+                  
                   </tr>
-                  {% comment %} {%endfor%} {% endcomment %}
-                  {%endfor%}
+                  {% endfor %}
                   
               </tbody>
           </table>

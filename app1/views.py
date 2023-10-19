@@ -59,14 +59,11 @@ def teacher_student_data(request):
         teacher = Teachers.objects.get(id=select_teacher)  # Replace with the student you want
         students =teacher.students.all()
         teacher_name=Teachers.objects.get(id=select_teacher)
+        certify1=Certificate.objects.filter(TeacherID=select_teacher).all().values()
         if Certificate.objects.filter(TeacherID=select_teacher).exists():
-            certify1=Certificate.objects.filter(TeacherID=select_teacher).values()
-            for certify2 in certify1:
-                # certify3=Certificate.objects.get(StudentID=certify2.StudentID)
-                # for i in certify3:
-                print("certify data:",certify1)
-                print("certify data for Loop:",certify2)
-                return render(request,'home.html',{'Data3':students,'Data':data,'Data1':data1,'Teacher':teacher_name,'certify':certify1})
+           
+            
+            return render(request,'home.html',{'Data3':students,'Data':data,'Data1':data1,'Teacher':teacher_name,'certify':certify1})
         return render(request,'home.html',{'Data3':students,'Data':data,'Data1':data1,'Teacher':teacher_name})
 
     else:
@@ -104,31 +101,7 @@ def verify_certificate(request,id):
     messages.error(request,'Certificate Not Generated !!!!')
     return redirect('/')
 
-def generate_certificate(request,id):
-    studentid=Students.objects.get(id=id)
-    teacherid=Teachers.objects.get(id=id)
-    if Certificate.objects.filter(StudentID=id).exists():
-        certificate=Certificate.objects.filter(StudentID=id)
-        messages.warning(request,'Your Certificate Already Generated')
-        return redirect('/')
-    
-    if Students.teachers.through.objects.filter(students_id=studentid,teachers_id=teacherid):
-            teacher = Teachers.objects.get(id=teacherid) 
-            students=Students.objects.get(id=studentid) # Replace with the student you want
-        
-            payload={
-                'StudentID':studentid,
-                'TeacherID':teacherid,
-                'Student_Name':students.name,
-                'Teacher_Name':teacher.name
 
-            }
-            token = jwt.encode(payload, 'Akshay2201', algorithm='HS256')
-
-            certificate_data=Certificate(StudentID=studentid,TeacherID=teacherid,Student_Name=students.name,Teacher_Name=teacher.name,JWT_Token=token)
-            certificate_data.save()
-
-            return render(request,'certificate.html',{'certi_data':certificate_data})
         
        
 
